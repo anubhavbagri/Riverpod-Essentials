@@ -2,7 +2,10 @@
 
 This repository code follows the [Riverpod Tutorial Playlist](https://www.youtube.com/playlist?list=PLjr4ufdmNA4IjEQ6xIv_sQdyBhm2kn1Qv) from Fun With Flutter youtube channel.
 
-> Also checkout [Code with Andrea](https://youtu.be/J2iFYZUabVM) & [Essential guide](https://codewithandrea.com/articles/flutter-state-management-riverpod/) article!
+> You can also checkout:
+> - [Code with Andrea](https://youtu.be/J2iFYZUabVM) & [Essential guide](https://codewithandrea.com/articles/flutter-state-management-riverpod/) article
+> - [Resocoder](https://youtu.be/atwWbkBdepE) & [Flutter Riverpod - The better provider](https://resocoder.com/2020/11/27/flutter-riverpod-tutorial-the-better-provider/) blog
+
 
 <details>
 <summary>A few resources to get you started if this is your first Flutter project</summary>
