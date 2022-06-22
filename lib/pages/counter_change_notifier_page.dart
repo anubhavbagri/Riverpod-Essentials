@@ -19,13 +19,24 @@ class CounterChangeNotifierPage extends ConsumerWidget {
       body: Center(
         child: Text('Count : ${counter.count}'),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ref.read(_counterProvider).increment();
-          // counter.increment();
-        },
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: myFloatingButton(),
+    );
+  }
+}
+
+class myFloatingButton extends ConsumerWidget {
+  const myFloatingButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return FloatingActionButton(
+      onPressed: () {
+        ref.read(_counterProvider).increment();
+        // counter.increment();
+      },
+      child: Icon(Icons.add),
     );
   }
 }
