@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
 
+/*
+The moment we try to manage more states, it becomes a lot more complicated to keep track of the different side effects in your aplication;
+*/
 class CounterChangeNotifier extends ChangeNotifier {
   // we can override the value because of the square brackets []
   CounterChangeNotifier([this.count = 0]);
