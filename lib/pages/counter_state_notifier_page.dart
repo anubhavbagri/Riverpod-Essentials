@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_essentials/notifiers.dart';
 
 final _counterProvider =
-    StateNotifierProvider<CounterStateNotifier, int>((ref) {
+    StateNotifierProvider<CounterStateNotifier, Counter>((ref) {
   return CounterStateNotifier();
 });
 
@@ -17,7 +17,7 @@ class CounterStateNotifierPage extends ConsumerWidget {
       appBar: AppBar(
         title: Text('State Notifier Page'),
       ),
-      body: Center(child: Text('Count: ${counter}')),
+      body: Center(child: Text('Count: ${counter.count}')),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           ref.read(_counterProvider.notifier).increment();

@@ -16,10 +16,16 @@ class CounterChangeNotifier extends ChangeNotifier {
   }
 }
 
-class CounterStateNotifier extends StateNotifier<int> {
-  CounterStateNotifier([int? count]) : super(count ?? 0);
+class CounterStateNotifier extends StateNotifier<Counter> {
+  CounterStateNotifier([Counter? counter]) : super(counter ?? Counter(0));
 
   void increment() {
-    state++;
+    state = Counter(state.count + 1);
   }
+}
+
+class Counter {
+  final int count;
+
+  Counter(this.count);
 }
