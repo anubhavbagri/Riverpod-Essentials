@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_essentials/pages/counter_change_notifier_page.dart';
+import 'package:riverpod_essentials/pages/counter_state_notifier_page.dart';
 
 const changeNotifierRoute = 'changeNotifier';
 const stateNotifierRoute = 'stateNotifier';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => Home(),
           changeNotifierRoute: (context) => CounterChangeNotifierPage(),
-          // stateNotifierRoute: (context) => CounterStateNotifierPage(),
+          stateNotifierRoute: (context) => CounterStateNotifierPage(),
           // stateProviderRoute: (context) => CounterStateProviderPage(),
         },
         theme: ThemeData(
