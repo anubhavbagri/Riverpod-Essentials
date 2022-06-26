@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_essentials/notifiers.dart';
+import 'package:riverpod_essentials/counter_app/notifiers.dart';
 
 final _counterProvider =
     StateNotifierProvider<CounterStateNotifier, Counter>((ref) {
