@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:riverpod_essentials/counter_app/counter_page.dart';
 import 'package:riverpod_essentials/todo_app/todo_page.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         },
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: GoogleFonts.inter().fontFamily,
         ),
       ),
     );
@@ -63,7 +65,7 @@ class Home extends StatelessWidget {
             ),
             ListTile(
               title: const Text(
-                'Counter App',
+                '1. Counter App',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -80,7 +82,7 @@ class Home extends StatelessWidget {
             ),
             ListTile(
               title: const Text(
-                'To-do App',
+                '2. To-do App',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
