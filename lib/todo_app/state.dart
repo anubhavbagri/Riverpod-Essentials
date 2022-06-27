@@ -12,8 +12,12 @@ final todosProvider = StateNotifierProvider<TodoNotifier, List<Todo>>((ref) {
   return TodoNotifier(ref.read, _sampleTodos);
 });
 
+// those widgets that listens to completedTodos will only be called when the completedTodos changes
 final completedTodos = Provider<List<Todo>>((ref) {
+  // Method 4
+  // we are watching a provider within a provider; completedTodos watches the changes within the todos provider
   final todos = ref.watch(todosProvider);
+  // only returning those todos that are marked as completed
   return todos.where((todo) => todo.completed).toList();
 });
 
@@ -27,6 +31,7 @@ class TodoNotifier extends StateNotifier<List<Todo>> {
   }
 
   void toggle(String id) {
+    // Method 5
     if (read(settingsProvider).deleteOnComplete) {
       remove(id);
       return;

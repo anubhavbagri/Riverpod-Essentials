@@ -53,12 +53,14 @@ class TodoPage extends StatelessWidget {
                     height: 20,
                   ),
                   Expanded(
+                    // Method 1
                     child: Consumer(
                       builder: ((context, ref, child) {
                         return ListView(
                           children: [
                             ...ref
                                 .watch(todosProvider)
+                                // TODO
                                 .map(
                                   (todo) => ProviderScope(
                                     overrides: [
@@ -71,10 +73,13 @@ class TodoPage extends StatelessWidget {
                           ],
                         );
                       }),
+                      // child of consumer actually allow us to increase the performance of the application by reducing the build of this particular child over here as it gets cached & only build once when the consumer is initially built
+                      // child: Text('asdf'),
                     ),
                   ),
                 ],
               ),
+              // Method 1
               Consumer(
                 builder: ((context, ref, child) {
                   return ListView(

@@ -33,6 +33,7 @@ class _TodoItemState extends State<TodoItem> {
 
   @override
   Widget build(BuildContext context) {
+    // Method 1
     return Consumer(
       builder: (context, ref, select) {
         final todo = ref.watch(currentTodo);

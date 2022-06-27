@@ -4,6 +4,7 @@ import 'package:riverpod_essentials/todo_app/state.dart';
 
 enum _MenuOptions { deleteOnComplete }
 
+// Method 2
 class Menu extends ConsumerWidget {
   const Menu({Key? key}) : super(key: key);
 
