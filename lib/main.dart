@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:riverpod_essentials/counter_app/counter_page.dart';
-import 'package:riverpod_essentials/todo_app/todo_page.dart';
+import 'package:riverpod_essentials/counter_app_three_ways/counter_page.dart';
+import 'package:riverpod_essentials/reading_providers/todo_page.dart';
 
 void main() {
   runApp(const MyApp());

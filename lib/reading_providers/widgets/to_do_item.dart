@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_essentials/todo_app/state.dart';
+import 'package:riverpod_essentials/reading_providers/state.dart';
 
 final currentTodo = Provider<Todo>((ref) => throw UnimplementedError());
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_essentials/todo_app/state.dart';
-import 'package:riverpod_essentials/todo_app/widgets/add_to_do_panel.dart';
-import 'package:riverpod_essentials/todo_app/widgets/menu.dart';
-import 'package:riverpod_essentials/todo_app/widgets/to_do_item.dart';
+import 'package:riverpod_essentials/reading_providers/state.dart';
+import 'package:riverpod_essentials/reading_providers/widgets/add_to_do_panel.dart';
+import 'package:riverpod_essentials/reading_providers/widgets/menu.dart';
+import 'package:riverpod_essentials/reading_providers/widgets/to_do_item.dart';
 
 class TodoPage extends StatelessWidget {
   const TodoPage({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_essentials/counter_app/notifiers.dart';
+import 'package:riverpod_essentials/counter_app_three_ways/notifiers.dart';
 
 final _counterProvider = ChangeNotifierProvider<CounterChangeNotifier>((ref) {
   return CounterChangeNotifier();
