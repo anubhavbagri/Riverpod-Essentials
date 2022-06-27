@@ -43,7 +43,7 @@ class _TodoItemState extends State<TodoItem> {
             background: Container(color: Colors.red),
             onDismissed: (_) {
               // Method 3
-              ref.read(todosProvider).remove(todo.id);
+              ref.read(todosProvider.notifier).remove(todo.id);
             },
             child: FocusScope(
               child: Focus(
