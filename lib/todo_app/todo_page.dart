@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_essentials/todo_app/state.dart';
+import 'package:riverpod_essentials/todo_app/widgets/add_to_do_panel.dart';
+import 'package:riverpod_essentials/todo_app/widgets/menu.dart';
+import 'package:riverpod_essentials/todo_app/widgets/to_do_item.dart';
 
 class TodoPage extends StatelessWidget {
   const TodoPage({Key? key}) : super(key: key);
@@ -19,7 +22,7 @@ class TodoPage extends StatelessWidget {
                 ),
           ),
           actions: [
-            _Menu(),
+            Menu(),
           ],
           bottom: TabBar(
             tabs: [
@@ -59,7 +62,7 @@ class TodoPage extends StatelessWidget {
                                 .map(
                                   (todo) => ProviderScope(
                                     overrides: [
-                                      _currentTodo.overrideWithValue(todo),
+                                      currentTodo.overrideWithValue(todo),
                                     ],
                                     child: TodoItem(),
                                   ),
@@ -81,7 +84,7 @@ class TodoPage extends StatelessWidget {
                           .map(
                             (todo) => ProviderScope(
                               overrides: [
-                                _currentTodo.overrideWithValue(todo),
+                                currentTodo.overrideWithValue(todo),
                               ],
                               child: TodoItem(),
                             ),
@@ -94,193 +97,6 @@ class TodoPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-final _currentTodo = Provider<Todo>((ref) => throw UnimplementedError());
-
-class TodoItem extends StatefulWidget {
-  TodoItem({Key? key}) : super(key: key);
-
-  @override
-  State<TodoItem> createState() => _TodoItemState();
-}
-
-class _TodoItemState extends State<TodoItem> {
-  late TextEditingController _textEditingController;
-  late FocusNode _textFocusNode;
-
-  bool hasFocus = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _textEditingController = TextEditingController();
-    _textFocusNode = FocusNode();
-  }
-
-  @override
-  void dispose() {
-    _textEditingController.dispose();
-    _textFocusNode.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, ref, select) {
-        final todo = ref.watch(_currentTodo);
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Dismissible(
-            key: UniqueKey(),
-            background: Container(color: Colors.red),
-            onDismissed: (_) {
-              // Method 3
-              ref.read(todosProvider).remove(todo.id);
-            },
-            child: FocusScope(
-              child: Focus(
-                onFocusChange: (isFocused) {
-                  if (!isFocused) {
-                    setState(() {
-                      hasFocus = false;
-                    });
-                    // Method 3
-                    ref.read(todosProvider.notifier).edit(
-                        id: todo.id, description: _textEditingController.text);
-                  } else {
-                    _textEditingController.text = todo.description;
-                    _textEditingController.selection =
-                        TextSelection.fromPosition(
-                      TextPosition(
-                        offset: _textEditingController.text.length,
-                      ),
-                    );
-                  }
-                },
-                child: ListTile(
-                  onTap: () {
-                    setState(() {
-                      hasFocus = true;
-                    });
-                    _textFocusNode.requestFocus();
-                  },
-                  title: hasFocus
-                      ? TextField(
-                          focusNode: _textFocusNode,
-                          controller: _textEditingController,
-                        )
-                      : Text(todo.description),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Checkbox(
-                        value: todo.completed,
-                        onChanged: (_) {
-                          // Method 3
-                          ref.read(todosProvider.notifier).toggle(todo.id);
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () {
-                          // Method 3
-                          ref.read(todosProvider.notifier).remove(todo.id);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-enum _MenuOptions { deleteOnComplete }
-
-class _Menu extends ConsumerWidget {
-  const _Menu({Key? key}) : super(key: key);
-
-  Future<void> onSelected(WidgetRef ref, _MenuOptions result) async {
-    if (result == _MenuOptions.deleteOnComplete) {
-      // Method 3
-      final currentSetting = ref.read(settingsProvider).deleteOnComplete;
-      // ref.read(settingsProvider) =
-      //     Settings(deleteOnComplete: !currentSetting);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isChecked = ref.watch(settingsProvider).deleteOnComplete;
-    return PopupMenuButton<_MenuOptions>(
-      onSelected: (result) {
-        onSelected(ref, result);
-      },
-      icon: const Icon(
-        Icons.menu,
-      ),
-      itemBuilder: (BuildContext context) => <PopupMenuEntry<_MenuOptions>>[
-        PopupMenuItem<_MenuOptions>(
-          value: _MenuOptions.deleteOnComplete,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Delete on complete'),
-              Checkbox(
-                value: isChecked,
-                onChanged: null,
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class AddTodoPanel extends ConsumerStatefulWidget {
-  const AddTodoPanel({Key? key}) : super(key: key);
-
-  @override
-  _AddTodoPanelState createState() => _AddTodoPanelState();
-}
-
-class _AddTodoPanelState extends ConsumerState<AddTodoPanel> {
-  TextEditingController _textEditingController = TextEditingController();
-
-  void _submit([String? value]) {
-    // Method 3
-    ref.read(todosProvider.notifier).add(_textEditingController.value.text);
-    _textEditingController.clear();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _textEditingController,
-              decoration: InputDecoration(hintText: 'New todo'),
-              onSubmitted: _submit,
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.check),
-            onPressed: _submit,
-          ),
-        ],
       ),
     );
   }
