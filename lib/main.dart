@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_essentials/pages/counter_change_notifier_page.dart';
-import 'package:riverpod_essentials/pages/counter_state_notifier_page.dart';
-import 'package:riverpod_essentials/pages/counter_state_provider_page.dart';
-
-const changeNotifierRoute = 'changeNotifier';
-const stateNotifierRoute = 'stateNotifier';
-const stateProviderRoute = 'stateProvider';
+import 'package:riverpod_essentials/counter_app/counter_page.dart';
+import 'package:riverpod_essentials/todo_app/todo_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,9 +21,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         routes: {
           '/': (context) => Home(),
-          changeNotifierRoute: (context) => CounterChangeNotifierPage(),
-          stateNotifierRoute: (context) => CounterStateNotifierPage(),
-          stateProviderRoute: (context) => CounterStateProviderPage(),
         },
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -43,29 +35,66 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return SafeArea(
+      child: Scaffold(
+        body: ListView(
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, changeNotifierRoute);
-              },
-              child: Text('Change Notifier'),
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Riverpod Essentials',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  FlutterLogo(
+                    size: 50,
+                  )
+                ],
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, stateNotifierRoute);
+            ListTile(
+              title: const Text(
+                'Counter App',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CounterPage(),
+                  ),
+                );
               },
-              child: Text('State Notifier'),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, stateProviderRoute);
+            ListTile(
+              title: const Text(
+                'To-do App',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TodoPage(),
+                  ),
+                );
               },
-              child: Text('State Provider'),
-            ),
+            )
           ],
         ),
       ),
