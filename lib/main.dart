@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:riverpod_essentials/async_value/todo_async_page.dart';
 import 'package:riverpod_essentials/counter_app_three_ways/counter_page.dart';
 import 'package:riverpod_essentials/reading_providers/todo_page.dart';
 
@@ -71,6 +72,7 @@ class Home extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              leading: Icon(Icons.people_outline),
               onTap: () {
                 Navigator.push(
                   context,
@@ -93,6 +95,23 @@ class Home extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const TodoPage(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text(
+                '3. Async Value Todo App',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TodoAsyncPage(),
                   ),
                 );
               },
