@@ -102,7 +102,7 @@ class Home extends StatelessWidget {
             ),
             ListTile(
               title: const Text(
-                '2. To-do App',
+                '2. To-do App (Reading providers)',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
