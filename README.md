@@ -8,14 +8,11 @@ This repository code follows the [Riverpod Tutorial Playlist](https://www.youtub
 
 
 <details>
-<summary>A few resources to get you started if this is your first Flutter project</summary>
+<summary><b>App preview</b></summary>
 <br>
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![image](https://user-images.githubusercontent.com/56643117/176249874-1d7564ce-6b4a-4339-a539-a719b4031c3f.png)
 
 </details>
+
+
