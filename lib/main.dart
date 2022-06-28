@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:riverpod_essentials/async_value/services/fake_todo_repository.dart';
 import 'package:riverpod_essentials/async_value/todo_async_page.dart';
+import 'package:riverpod_essentials/async_value/todo_state.dart';
 import 'package:riverpod_essentials/counter_app_three_ways/counter_page.dart';
 import 'package:riverpod_essentials/reading_providers/todo_page.dart';
 
@@ -17,6 +19,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // ProviderScope is essentially a configuration widget for riverpod that just adds the providers to the scope of your application. It also allows us to create overrides & set observers.
     return ProviderScope(
+      // Overriding for testing
+      overrides: [
+        todoRepositoryProvider.overrideWithValue(FakeTodoRepository())
+      ],
       child: MaterialApp(
         title: 'Flutter Riverpod',
         initialRoute: '/',
@@ -72,7 +78,6 @@ class Home extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              leading: Icon(Icons.people_outline),
               onTap: () {
                 Navigator.push(
                   context,

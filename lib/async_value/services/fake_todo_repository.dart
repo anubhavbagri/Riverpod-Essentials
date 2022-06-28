@@ -21,7 +21,7 @@ Todo Error: $error
   }
 }
 
-const double errorLikelihood = 0.1;
+const double errorLikelihood = 0.4;
 
 class FakeTodoRepository implements TodoRepository {
   FakeTodoRepository() : random = Random() {
@@ -107,6 +107,7 @@ class FakeTodoRepository implements TodoRepository {
   }
 
   Future<void> _waitRandomTime() async {
+    // waiting anywhere between 0 and 3 seconds
     await Future.delayed(
       Duration(seconds: random.nextInt(3)),
       () {},
