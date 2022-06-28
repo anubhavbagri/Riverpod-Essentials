@@ -12,6 +12,7 @@ class TodoAsyncPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // ref.listen only listens for a change on a provider so it won't cause a rebuild in your widget
     ref.listen<TodoException?>(
       todoExceptionProvider,
       (e, exceptionState) {
